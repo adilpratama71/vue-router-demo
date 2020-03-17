@@ -3,7 +3,12 @@
     <div v-if="!isLoading">
       <h2>List Pokemon</h2>
       <div class="row">
-        <Card v-for="(pokemon, idx) in pokemons" :key="idx" :data="pokemon" :index="idx" />
+        <Card
+          v-for="(pokemon, idx) in pokemons"
+          :key="idx"
+          :data="pokemon"
+          :index="idx"
+        />
       </div>
     </div>
     <div v-else>
@@ -17,7 +22,7 @@ import axios from 'axios'
 import Card from '../components/Card'
 import Loading from '../components/Loading'
 export default {
-  data () {
+  data() {
     return {
       pokemons: [],
       isLoading: false
@@ -28,11 +33,13 @@ export default {
     Loading
   },
   methods: {
-    getPokemons () {
+    getPokemons() {
       this.isLoading = true
-      axios.get('http://pokeapi.salestock.net/api/v2/pokemon/?limit=20&offset=0')
+      axios
+        .get('http://pokeapi.salestock.net/api/v2/pokemon/?limit=20&offset=0')
         .then(response => {
           const { data } = response
+          console.log(data.results)
           this.pokemons.push(...data.results)
         })
         .catch(err => {
@@ -41,15 +48,9 @@ export default {
         .finally(_ => {
           this.isLoading = false
         })
-    },
-    getImage (index) {
-      const s = '000' + (index + 1)
-      const indexLength = (index + 1).toString().split('').length
-      const imageName = s.substr(indexLength)
-      return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageName}.png`
     }
   },
-  created () {
+  created() {
     this.getPokemons()
   }
 }

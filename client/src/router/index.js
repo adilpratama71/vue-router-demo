@@ -4,7 +4,6 @@ import Home from '../views/Home.vue'
 import ListCard from '../views/ListCard.vue'
 import ListPokemon from '../views/ListPokemon.vue'
 import DetailPokemon from '../views/DetailPokemon.vue'
-import Dashboard from '../views/Dashboard.vue'
 import PokemonDescription from '../components/PokemonDescription'
 import PokemonStats from '../components/PokemonStats'
 
@@ -45,14 +44,6 @@ const routes = [
     path: '/card',
     name: 'ListCard',
     component: ListCard
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
-    meta: {
-      requiresAuth: true
-    }
   }
 ]
 

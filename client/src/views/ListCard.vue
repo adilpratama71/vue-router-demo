@@ -18,7 +18,7 @@ import Card from '../components/Card'
 import Loading from '../components/Loading'
 export default {
   name: 'ListCard',
-  data () {
+  data() {
     return {
       cards: [],
       isLoading: false
@@ -29,9 +29,10 @@ export default {
     Loading
   },
   methods: {
-    getCards () {
+    getCards() {
       this.isLoading = true
-      axios.get('https://api.pokemontcg.io/v1/cards?pageSize=20&page=1')
+      axios
+        .get('https://api.pokemontcg.io/v1/cards?pageSize=20&page=1')
         .then(response => {
           const { data } = response
           this.cards.push(...data.cards)
@@ -44,7 +45,7 @@ export default {
         })
     }
   },
-  created () {
+  created() {
     this.getCards()
   }
 }
