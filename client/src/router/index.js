@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/pokemon',
     name: 'ListPokemon',
-    component: ListPokemon,
+    component: ListPokemon
   },
   {
     path: '/pokemon/:name',
