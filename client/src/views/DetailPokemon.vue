@@ -1,25 +1,34 @@
 <template>
-  <div class="row d-flex justify-content-center mt-5" v-if="pokemon.id">
-    <div class="col-md-3">
-      <img :src="getImage()" alt="">
+  <div>
+    <div class="row d-flex justify-content-center mt-5" v-if="!isLoading">
+      <div class="col-md-3">
+        <img :src="getImage()" alt="">
+      </div>
+      <div class="col-md-5">
+        <h2>Detail Pokemon {{pokemon.name}}</h2>
+        <p>
+          {{description}}
+        </p>
+      </div>
     </div>
-    <div class="col-md-5">
-      <h2>Detail Pokemon {{pokemon.name}}</h2>
-      <p>
-        {{description}}
-      </p>
+    <div v-else>
+      <Loading />
     </div>
-
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Loading from '../components/Loading'
 export default {
   data () {
     return {
-      pokemon: {}
+      pokemon: {},
+      isLoading: false
     }
+  },
+  components: {
+    Loading
   },
   computed: {
     description () {
@@ -29,6 +38,8 @@ export default {
   methods: {
     getDetailPokemon () {
       const pokemonName = this.$route.params.name
+
+      this.isLoading = true
       axios.get(`http://pokeapi.salestock.net/api/v2/pokemon-species/${pokemonName}`)
         .then(response => {
           const { data } = response
@@ -37,6 +48,9 @@ export default {
         })
         .catch(err => {
           console.log(err)
+        })
+        .finally(_ => {
+          this.isLoading = false
         })
     },
     getImage () {

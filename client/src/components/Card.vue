@@ -1,11 +1,11 @@
 <template>
   <div class="col-md-3">
-    <div class="card mb-3">
+    <div class="card mb-3 shadow-sm text-center">
       <div class="p-3">
         <img class="img-fluid" :src="getImage(index)" alt="">
       </div>
       <div class="card-body">
-        {{data.name}}
+        <span class="text-capitalize">{{data.name}}</span>
         <div class="mt-3">
           <button class="btn btn-secondary btn-sm" @click="goToDetailPokemon">View Detail</button>
         </div>
