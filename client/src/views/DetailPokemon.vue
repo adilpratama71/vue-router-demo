@@ -1,11 +1,16 @@
 <template>
   <div>
     <div class="row d-flex justify-content-center mt-5" v-if="!isLoading">
-      <div class="col-md-3">
+      <div class="col-md-3 text-center">
         <img :src="getImage()" alt="">
+        <h2>{{pokemon.name}}</h2>
+        <div class="btn-group">
+          <a href="#" class="btn btn-sm btn-outline-secondary">Description</a>
+          <a href="#" class="btn btn-sm btn-outline-secondary">Stats</a>
+        </div>
       </div>
       <div class="col-md-5">
-        <h2>Detail Pokemon {{pokemon.name}}</h2>
+        <h2>Detail Pokemon</h2>
         <p>
           {{description}}
         </p>
