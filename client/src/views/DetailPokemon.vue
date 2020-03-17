@@ -5,15 +5,12 @@
         <img :src="getImage()" alt="">
         <h2>{{pokemon.name}}</h2>
         <div class="btn-group">
-          <a href="#" class="btn btn-sm btn-outline-secondary">Description</a>
-          <a href="#" class="btn btn-sm btn-outline-secondary">Stats</a>
+          <router-link :to="`/pokemon/${$route.params.name}/description`" class="btn btn-sm btn-outline-secondary">Description</router-link>
+          <router-link :to="`/pokemon/${$route.params.name}/stats`" class="btn btn-sm btn-outline-secondary">Stats</router-link>
         </div>
       </div>
       <div class="col-md-5">
-        <h2>Detail Pokemon</h2>
-        <p>
-          {{description}}
-        </p>
+        <router-view :data="pokemon"></router-view>
       </div>
     </div>
     <div v-else>
